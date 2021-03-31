@@ -1,3 +1,7 @@
+--Made by Vespasian
+
+--Thanks for the support angel <3!
+
 leftclick = not leftclick
 if not leftclick then return end
 
