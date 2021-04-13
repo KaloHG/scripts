@@ -14,19 +14,20 @@ local yaw = getPlayer().yaw
 local pitch = getPlayer().pitch
 
 
-log("&aHolding left click")
+log("&aToggled Spider Grinder")
 local start = os.clock()
 
 while leftclick do
+    local hunger = getPlayer().hunger
+    if hunger < 6 then
+        use(6000) --Eat for 6 seconds
+        sleep(6000)
+    end
 	attack(nil) --instant click
 	sleep(1000) --one click a second.
 	if lock_cam then
 		look(yaw, pitch)
 	end
-    if getPlayer().hunger < 6 then
-        use(6000) --Eat for 6 seconds
-        sleep(6000)
-    end
 end
 
 attack(1)
