@@ -17,36 +17,6 @@ local pitch = getPlayer().pitch
 log("&aToggled Spider Grinder")
 local start = os.clock()
 
-while leftclick do
-    local hunger = getPlayer().hunger
-    if hunger < 6 then
-        use(6000) --Eat for 6 seconds
-        sleep(6000)
-    end
-    local tool = pick('minecraft:diamond_sword')
-    local dura = tool['maxDmg'] - tool['dmg']
-    if dura < 32 then
-        say("/logout")
-        log("&cSword Dura too low to continue.")
-        stopAllScripts()
-    end
-	attack(nil) --instant click
-	sleep(1000) --one click a second.
-	if lock_cam then
-		look(yaw, pitch)
-	end
-end
-
-attack(1)
-sneak(1)
-
-local total = os.clock() - start
-local minutes = math.floor(total / 60)
-local seconds = math.floor(total % 60)
-log("&cRan spider grinder for &f" .. minutes .. "m " .. seconds .. "s")
-
---Pick item in hotbar first, followed by inventory
---God bless vespasian for making this helpful thing
 function pick(obj)
     local inv = openInventory()
     
@@ -77,3 +47,31 @@ function pick(obj)
         end
     inv.close()
 end
+
+while leftclick do
+    local hunger = getPlayer().hunger
+    if hunger < 6 then
+        use(6000) --Eat for 6 seconds
+        sleep(6000)
+    end
+    local tool = pick('minecraft:diamond_sword')
+    local dura = tool['maxDmg'] - tool['dmg']
+    if dura < 32 then
+        say("/logout")
+        log("&cSword Dura too low to continue.")
+        stopAllScripts()
+    end
+	attack(nil) --instant click
+	sleep(1000) --one click a second.
+	if lock_cam then
+		look(yaw, pitch)
+	end
+end
+
+attack(1)
+sneak(1)
+
+local total = os.clock() - start
+local minutes = math.floor(total / 60)
+local seconds = math.floor(total % 60)
+log("&cRan spider grinder for &f" .. minutes .. "m " .. seconds .. "s")
